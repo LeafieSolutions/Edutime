@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'color/app_themes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
