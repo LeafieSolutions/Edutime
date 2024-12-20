@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     final themeRepository = ThemeRepoImplementation();
 
     return ScreenUtilInit(
-      designSize: Size(360, 800),
+      designSize: const Size(360, 800),
       minTextAdapt: true,
       ensureScreenSize: true,
       builder: (context, child) {

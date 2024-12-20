@@ -1,6 +1,7 @@
 import 'package:edutime/domain/implementation/venue_booking_repo_implementation.dart';
 import 'package:edutime/domain/usecases/venue_booking_usecases.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 import '../domain/models/building_model.dart';
 import '../domain/models/room_model.dart';
@@ -33,6 +34,18 @@ class VenueBookingProvider with ChangeNotifier {
   VenueStatus get venueStatus => _status;
   String? get errorMessage => _error;
 
+  final Map<String, dynamic> _venueDetails = {
+    'startTime': null,
+    'endTime': null,
+    'recurringType': null,
+    'userId': null,
+    'roomId': null,
+    'academicCourseId': null,
+    'academicUnitId': null,
+    'buildingID': null
+  };
+
+
   Future<void> getExistingBuildings() async {
     _status = VenueStatus.fetching;
     notifyListeners();
@@ -41,6 +54,9 @@ class VenueBookingProvider with ChangeNotifier {
       _buildings = await _fetchExistingBuildingsUseCase.execute();
       _status = VenueStatus.found;
       _error = null;
+      if (kDebugMode) {
+        print(_buildings);
+      }
     } catch (e) {
       _status = VenueStatus.failed;
       _error = 'Failed to load buildings: $e';
@@ -77,4 +93,20 @@ class VenueBookingProvider with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void updateVenueDetails(String key, dynamic value) {
+    // Check if the key exists in the map before updating
+    if (_venueDetails.containsKey(key)) {
+      _venueDetails[key] = value;
+      notifyListeners();
+      if (kDebugMode) {
+        print('Updated $key to $value');
+      }
+    } else {
+      if (kDebugMode) {
+        print('Key $key does not exist in _venueDetails');
+      }
+    }
+  }
+  // TODO: Ensure to notify the user if all details are not fed in
 }

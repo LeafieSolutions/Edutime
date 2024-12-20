@@ -1,3 +1,3 @@
 class ApiConstants {
-  static final String apiUrl = 'https://edutime-backend.vercel.app/api';
+  static const String apiUrl = 'https://edutime-backend.vercel.app/api';
 }

@@ -33,6 +33,10 @@ class _CustomGoogleCalendarState extends State<CustomGoogleCalendar> {
     'Complex C': ['Room 301', 'Room 302', 'Room 303'],
   };
 
+  @override
+  void initState() {
+    super.initState();
+  }
   // Selected building and room
   String? _selectedBuilding;
   String? _selectedRoom;
@@ -62,10 +66,10 @@ class _CustomGoogleCalendarState extends State<CustomGoogleCalendar> {
               });
             }
           },
-          timeSlotViewSettings: TimeSlotViewSettings(
+          timeSlotViewSettings: const TimeSlotViewSettings(
             startHour: 5,
             endHour: 22,
-            timeInterval: const Duration(hours: 1)
+            timeInterval: Duration(hours: 1)
           ),
         ),
         if (_showDraggableSheet)

@@ -16,11 +16,11 @@ class _ManagePageState extends State<ManagePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar2(),
+        appBar: const AppBar2(),
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
+          child: const Column(
             children: [
               CustomSearchBar(),
               UnitAndTimetableComponent()

@@ -36,7 +36,9 @@ class Building {
       initials: json['initials'] as String,
       floors: json['floors'] as int,
       gates: (json['gates'] as List<dynamic>)
-          .map((gate) => Gate.values.firstWhere((e) => e.name.toLowerCase() == gate))
+          .where((gate) => Gate.values.any((e) => e.name.toLowerCase() == gate.toString().toLowerCase()))
+          .map((gate) => Gate.values.firstWhere(
+            (e) => e.name.toLowerCase() == gate.toString().toLowerCase()))
           .toList(),
     );
   }
